@@ -2,6 +2,14 @@
   min-height: 100vh;
   display: flex;
   background: var(--hd-bg-secondary);
+  position: relative;
+}
+
+.login-page__theme-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
 }
 
 .login-container {

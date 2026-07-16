@@ -133,11 +133,14 @@
 }
 
 /* Dark mode class override */
+html.dark,
 .dark {
   /* Background Colors */
   --hd-bg-primary: #121212;
   --hd-bg-secondary: #1e1e1e;
   --hd-bg-tertiary: #2d2d2d;
+  --hd-main-bg: #121212;
+  --hd-table-header: #1e1e1e;
   
   /* Text Colors */
   --hd-text-primary: #ffffff;
