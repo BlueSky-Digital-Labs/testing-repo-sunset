@@ -36,6 +36,22 @@ button {
   font-family: inherit;
 }
 
+.page-enter {
+  animation: page-enter 0.35s ease-out;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Remove default button styles that might interfere */
 button:focus {
   outline: none;

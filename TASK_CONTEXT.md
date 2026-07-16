@@ -1,58 +1,77 @@
-# Task Context: Add Dark Mode Functionality
+# Task Context: UI Enhancements & Dark Mode
 
 ## Ticket Scope
 
-Frontend-only implementation of user-controlled Dark Mode for the React (Vite) application in `frontend/`. The Django backend is out of scope.
+Frontend-only work in `frontend/` for the React (Vite) application. This branch includes:
 
-## Key Implementation Decisions
+1. **Dark Mode** — user-controlled theme toggle with persistence
+2. **UI Enhancements** — settings page, shared page header, theme-consistent dashboard styling, and subtle page transitions
 
-1. **Theme state management** — Added a `ThemeProvider` React context (`frontend/src/context/ThemeContext.tsx`) that:
-   - Stores the user's preference in `localStorage` under `hd-theme`
-   - Falls back to the system `prefers-color-scheme` when no saved preference exists
-   - Applies the `dark` class to `document.documentElement` (`<html>`) for global theming
+The Django backend is out of scope.
 
-2. **UI toggle** — Created an accessible `DarkModeToggle` atom component using `role="switch"`, `aria-checked`, and descriptive `aria-label` values. The toggle is placed in:
-   - **Auth pages** (Login / Register) — top-right corner for visibility before sign-in
-   - **Dashboard sidebar** — footer area above logout, alongside existing navigation
-   - **Header** — included for future use when the shared `Layout` template is adopted
+---
 
-3. **Styling** — Extended existing CSS variables in `frontend/src/styles/theme.css`. The project already defined `.dark` overrides; this work wires them to user interaction and expands coverage for main/table backgrounds. Component styles were updated to use theme variables instead of hard-coded light colors where relevant.
+## Dark Mode (prior work)
 
-4. **Testing** — No test runner existed in `package.json`. Added **Vitest** with Testing Library (standard for Vite projects) and tests covering default state, toggle behavior, `localStorage` persistence, and `dark` class application.
+### Key decisions
+- `ThemeProvider` stores preference in `localStorage` (`hd-theme`), falls back to system `prefers-color-scheme`, applies `dark` class to `<html>`
+- `DarkModeToggle` atom with accessible `role="switch"` semantics
+- Toggle locations: auth pages, dashboard sidebar, header (for future `Layout` use)
 
-## Files Changed
+---
+
+## UI Enhancements (this task)
+
+### Key Implementation Decisions
+
+1. **Settings page (`/settings`)** — Wired the existing sidebar "Settings" nav item to a new protected route. The page uses `DashboardLayout` and presents Appearance (dark mode toggle) and Account (email) sections in card-style panels.
+
+2. **Shared `PageHeader` molecule** — Extracted a reusable page header (title, subtitle, optional action slot) used on Dashboard and Settings for consistent hierarchy and spacing.
+
+3. **Theme-variable migration** — Replaced hard-coded colors in dashboard cards, jobs table, auth form accents, and layout backgrounds with CSS custom properties so light/dark mode works via the user toggle (not only `prefers-color-scheme` media queries).
+
+4. **Subtle motion** — Added a `page-enter` fade/slide animation on dashboard content areas for smoother navigation feel.
+
+5. **Testing** — Added Vitest coverage for `PageHeader`, `SettingsPage`, and `/settings` route protection. Reused a `renderWithProviders` test helper for Redux + Router + Theme setup.
+
+### Files Changed (UI enhancements)
 
 | File | Why |
 |------|-----|
-| `frontend/src/context/ThemeContext.tsx` | Theme provider, hook, and document class management |
-| `frontend/src/context/ThemeContext.test.tsx` | Unit tests for theme hook |
-| `frontend/src/components/atoms/DarkModeToggle/*` | Accessible toggle UI component and styles |
-| `frontend/src/components/atoms/DarkModeToggle/DarkModeToggle.test.tsx` | Component tests |
+| `frontend/src/pages/settings/*` | New Settings page, styles, and tests |
+| `frontend/src/components/molecules/PageHeader/*` | Reusable page header component and tests |
+| `frontend/src/App.tsx` | Register `/settings` protected route |
+| `frontend/src/pages/dashboard/DashboardPage.tsx` | Adopt `PageHeader`, add page-enter class |
+| `frontend/src/pages/dashboard/DashboardPage.css` | Theme variables for table/section styling |
+| `frontend/src/components/molecules/DashboardCard/DashboardCard.css` | Theme variables for stat cards |
+| `frontend/src/components/templates/DashboardLayout/DashboardLayout.css` | Theme background + content animation |
+| `frontend/src/pages/auth/LoginPage.css` | Theme variables for form/error/footer |
+| `frontend/src/index.css` | Shared `page-enter` keyframes |
+| `frontend/src/content/index.ts` | Settings page copy |
+| `frontend/src/hooks/useContent.ts` | `useSettingsContent` hook |
+| `frontend/src/test/renderWithProviders.tsx` | Shared test render helper |
+| `frontend/src/App.test.tsx` | Route protection test for settings |
+
+### Files Changed (dark mode — prior)
+
+| File | Why |
+|------|-----|
+| `frontend/src/context/ThemeContext.tsx` | Theme provider and hook |
+| `frontend/src/components/atoms/DarkModeToggle/*` | Toggle UI component and tests |
 | `frontend/src/main.tsx` | Wrap app with `ThemeProvider` |
-| `frontend/src/pages/auth/LoginPage.tsx` | Add toggle to login screen |
-| `frontend/src/pages/auth/RegisterPage.tsx` | Add toggle to register screen |
-| `frontend/src/pages/auth/LoginPage.css` | Position toggle on auth pages |
-| `frontend/src/components/organisms/Sidebar/Sidebar.tsx` | Add toggle to dashboard sidebar |
-| `frontend/src/components/organisms/Sidebar/Sidebar.css` | Sidebar footer layout for toggle |
-| `frontend/src/components/organisms/Header/Header.tsx` | Add toggle to header nav |
-| `frontend/src/components/organisms/Header/Header.css` | Theme-variable styling for header |
-| `frontend/src/styles/theme.css` | Expanded `.dark` CSS variable overrides |
-| `frontend/src/index.css` | Dark-mode scrollbar and body styles via `.dark` class |
-| `frontend/src/hooks/index.ts` | Re-export `useTheme` |
-| `frontend/src/components/atoms/index.ts` | Export `DarkModeToggle` |
-| `frontend/vite.config.ts` | Vite build configuration (unchanged test surface) |
-| `frontend/vitest.config.ts` | Vitest configuration merged with Vite config |
-| `frontend/src/test/setup.ts` | Test setup (jest-dom, matchMedia mock) |
-| `frontend/package.json` | Vitest + Testing Library dev dependencies, `test` script |
+| `frontend/src/pages/auth/LoginPage.tsx`, `RegisterPage.tsx` | Auth-page toggle placement |
+| `frontend/src/components/organisms/Sidebar/Sidebar.tsx` | Sidebar toggle placement |
+| `frontend/src/components/organisms/Header/Header.tsx` | Header toggle placement |
+| `frontend/src/styles/theme.css`, `index.css` | Dark theme variable overrides |
 
 ## Verification
 
-- `npm test` — 5 tests passing
-- `npm run lint` — no errors (one pre-existing-style warning on context file export)
-- `npm run build` — TypeScript + Vite build
+- `npm test` — 10 tests passing
+- `npm run lint` — no errors (one pre-existing warning on `ThemeContext` export)
+- `npm run build` — TypeScript + Vite build successful
 
 ## Open Questions / Follow-ups
 
-- Auth pages and dashboard sidebar both expose the toggle; consider consolidating if a global shell layout is introduced later.
-- Dashboard-specific page CSS (e.g. `DashboardPage.css`) still uses some hard-coded colors and may need a follow-up pass for full dark-mode parity beyond CSS variables.
-- `Header` / `Layout` are not currently used by routed pages; toggle is included there for consistency when those templates are wired in.
+- Other sidebar links (Jobs, Calendar, etc.) still have no routes; Settings is the first non-dashboard route wired up.
+- Dashboard and sidebar both expose the dark mode toggle; Settings centralizes appearance preferences for users who navigate there.
+- Remaining sidebar menu pages could adopt `PageHeader` and the settings card pattern when implemented.

@@ -2,6 +2,7 @@ import { useAuth } from '@hooks/useAuth'
 import { useDashboardContent } from '@hooks/useContent'
 import { DashboardLayout } from '@components/templates/DashboardLayout'
 import { DashboardCard } from '@components/molecules/DashboardCard'
+import { PageHeader } from '@components/molecules/PageHeader'
 import { 
   Users, 
   Briefcase, 
@@ -46,18 +47,18 @@ const DashboardPage = () => {
 
   return (
     <DashboardLayout>
-      <div className="dashboard-page">
-        <div className="dashboard-header">
-          <div className="welcome-section">
-            <h1>{dashboardContent.welcome.title}, {user?.email?.split('@')[0] || 'User'}!</h1>
-            <p>{dashboardContent.welcome.subtitle}</p>
-          </div>
-          <div className="user-avatar">
-            <div className="avatar-circle">
-              <span>{user?.email?.[0]?.toUpperCase() || 'U'}</span>
+      <div className="dashboard-page page-enter">
+        <PageHeader
+          title={`${dashboardContent.welcome.title}, ${user?.email?.split('@')[0] || 'User'}!`}
+          subtitle={dashboardContent.welcome.subtitle}
+          action={
+            <div className="user-avatar">
+              <div className="avatar-circle" aria-hidden="true">
+                <span>{user?.email?.[0]?.toUpperCase() || 'U'}</span>
+              </div>
             </div>
-          </div>
-        </div>
+          }
+        />
 
         <div className="dashboard-grid">
           <DashboardCard
