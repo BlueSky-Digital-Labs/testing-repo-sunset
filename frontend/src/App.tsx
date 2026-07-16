@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from '@store/index'
 import { LoginPage, RegisterPage } from '@pages/auth'
 import { DashboardPage } from '@pages/dashboard'
+import { SettingsPage } from '@pages/settings'
 import { ProtectedRoute } from '@components/organisms/ProtectedRoute'
 
 function App() {
@@ -21,6 +22,14 @@ function App() {
         element={
           <ProtectedRoute isAuthenticated={isAuthenticated}>
             <DashboardPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/settings"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated}>
+            <SettingsPage />
           </ProtectedRoute>
         }
       />

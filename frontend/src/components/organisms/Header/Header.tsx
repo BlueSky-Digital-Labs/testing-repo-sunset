@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { RootState } from '@store/index'
 import { logout } from '@store/slices/authSlice'
 import { Button } from '@components/atoms/Button'
+import { DarkModeToggle } from '@components/atoms/DarkModeToggle'
 import { Logo } from '@components/atoms/Logo'
 import { User, LogOut } from 'lucide-react'
 import './Header.css'
@@ -25,6 +26,7 @@ export const Header = () => {
         </Link>
 
         <nav className="header__nav">
+          <DarkModeToggle showLabel={false} className="header__theme-toggle" />
           {isAuthenticated ? (
             <div className="header__user-menu">
               <span className="header__user-info">

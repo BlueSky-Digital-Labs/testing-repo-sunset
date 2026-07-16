@@ -18,6 +18,7 @@ export const useContent = (path?: string) => {
 // Specific content hooks for better type safety and convenience
 export const useAuthContent = () => content.auth
 export const useDashboardContent = () => content.dashboard
+export const useSettingsContent = () => content.settings
 export const useSidebarContent = () => content.sidebar
 export const useHeaderContent = () => content.header
 export const useCommonContent = () => content.common
