@@ -7,6 +7,7 @@ import { Button } from '@components/atoms/Button'
 import { Input } from '@components/atoms/Input'
 import { Logo } from '@components/atoms/Logo'
 import { useAuthContent } from '@hooks/useContent'
+import { ThemeToggle } from '@components/atoms/ThemeToggle'
 import { Eye, EyeOff } from 'lucide-react'
 import './LoginPage.css'
 
@@ -61,6 +62,7 @@ const LoginPage = () => {
 
   return (
     <div className="login-page">
+      <ThemeToggle className="theme-toggle--floating" />
       <div className="login-container">
         <div className="login-left">
           <div className="login-form-wrapper">
