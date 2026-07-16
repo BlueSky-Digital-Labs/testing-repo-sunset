@@ -228,23 +228,48 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .login-left {
+  :root:not([data-theme="light"]) .login-left {
     background: #1a202c;
   }
-  
-  .login-header h1 {
+
+  :root:not([data-theme="light"]) .login-header h1 {
     color: #f7fafc;
   }
-  
-  .login-header p {
+
+  :root:not([data-theme="light"]) .login-header p {
     color: #a0aec0;
   }
-  
-  .remember-me {
+
+  :root:not([data-theme="light"]) .remember-me {
     color: #e2e8f0;
   }
-  
-  .login-footer p {
+
+  :root:not([data-theme="light"]) .login-footer p {
     color: #a0aec0;
   }
+}
+
+:root[data-theme="dark"] .login-left,
+:root.dark .login-left {
+  background: #1a202c;
+}
+
+:root[data-theme="dark"] .login-header h1,
+:root.dark .login-header h1 {
+  color: #f7fafc;
+}
+
+:root[data-theme="dark"] .login-header p,
+:root.dark .login-header p {
+  color: #a0aec0;
+}
+
+:root[data-theme="dark"] .remember-me,
+:root.dark .remember-me {
+  color: #e2e8f0;
+}
+
+:root[data-theme="dark"] .login-footer p,
+:root.dark .login-footer p {
+  color: #a0aec0;
 }

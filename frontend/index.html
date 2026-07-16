@@ -7,6 +7,30 @@
     <title>Horizon Digital</title>
     <meta name="description" content="Horizon Digital - Your digital transformation partner for modern business solutions" />
     <meta name="theme-color" content="#8b5cf6" />
+    <script>
+      (function () {
+        var storageKey = 'hd-theme';
+        var theme = 'system';
+        try {
+          var stored = localStorage.getItem(storageKey);
+          if (stored === 'light' || stored === 'dark' || stored === 'system') {
+            theme = stored;
+          }
+        } catch (e) {}
+
+        var resolved = theme;
+        if (theme === 'system') {
+          resolved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        var root = document.documentElement;
+        root.setAttribute('data-theme', theme);
+        if (resolved === 'dark') {
+          root.classList.add('dark');
+        }
+        root.style.colorScheme = theme === 'system' ? 'light dark' : resolved;
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

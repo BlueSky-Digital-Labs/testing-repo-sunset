@@ -96,6 +96,23 @@
   margin-top: auto;
 }
 
+.sidebar-theme {
+  margin-bottom: 0.75rem;
+}
+
+.sidebar-theme .theme-toggle {
+  width: 100%;
+  justify-content: center;
+  border-color: var(--hd-gray-600);
+  background: transparent;
+  color: var(--hd-sidebar-text);
+}
+
+.sidebar-theme .theme-toggle:hover {
+  background: var(--hd-gray-700);
+  color: white;
+}
+
 .logout-btn {
   display: flex;
   align-items: center;

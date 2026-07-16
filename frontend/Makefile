@@ -54,6 +54,12 @@ install: ## Install dependencies inside container
 lint: ## Run linting inside container
 	$(COMPOSE_CMD) $(COMPOSE_FILE) exec frontend sh -c 'if command -v bun >/dev/null 2>&1; then bun run lint; else npm run lint; fi'
 
+test: ## Run frontend unit tests
+	npm test
+
+test-local: ## Run frontend unit tests locally
+	npm test
+
 dev: ## Start development environment with hot reload
 	ENV=dev $(MAKE) up
 
