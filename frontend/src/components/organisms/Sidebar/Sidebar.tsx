@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '@hooks/useAuth'
 import { useSidebarContent } from '@hooks/useContent'
 import { Logo } from '@components/atoms/Logo'
+import { ThemeToggle } from '@components/atoms/ThemeToggle'
 import { 
   LayoutDashboard, 
   Briefcase, 
@@ -88,6 +89,9 @@ export const Sidebar = () => {
       </nav>
 
       <div className="sidebar-footer">
+        <div className="sidebar-theme">
+          <ThemeToggle showLabel />
+        </div>
         <button onClick={handleLogout} className="logout-btn">
           <LogOut size={20} />
           <span>{sidebarContent.user.logout}</span>

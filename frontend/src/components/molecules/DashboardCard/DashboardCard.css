@@ -109,25 +109,52 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .dashboard-card {
+  :root:not([data-theme="light"]) .dashboard-card {
     background: #1e293b;
     border-color: #334155;
   }
-  
-  .card-title {
+
+  :root:not([data-theme="light"]) .card-title {
     color: #94a3b8;
   }
-  
-  .card-subtitle {
+
+  :root:not([data-theme="light"]) .card-subtitle {
     color: #64748b;
   }
-  
-  .card-value {
+
+  :root:not([data-theme="light"]) .card-value {
     color: #f1f5f9;
   }
-  
-  .card-icon {
+
+  :root:not([data-theme="light"]) .card-icon {
     background: #334155;
     color: #94a3b8;
   }
+}
+
+:root[data-theme="dark"] .dashboard-card,
+:root.dark .dashboard-card {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+:root[data-theme="dark"] .card-title,
+:root.dark .card-title {
+  color: #94a3b8;
+}
+
+:root[data-theme="dark"] .card-subtitle,
+:root.dark .card-subtitle {
+  color: #64748b;
+}
+
+:root[data-theme="dark"] .card-value,
+:root.dark .card-value {
+  color: #f1f5f9;
+}
+
+:root[data-theme="dark"] .card-icon,
+:root.dark .card-icon {
+  background: #334155;
+  color: #94a3b8;
 }

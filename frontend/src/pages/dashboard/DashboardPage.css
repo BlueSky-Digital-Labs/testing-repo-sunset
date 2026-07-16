@@ -182,41 +182,88 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .welcome-section h1 {
+  :root:not([data-theme="light"]) .welcome-section h1 {
     color: #f1f5f9;
   }
-  
-  .welcome-section p {
+
+  :root:not([data-theme="light"]) .welcome-section p {
     color: #94a3b8;
   }
-  
-  .recent-jobs-section {
+
+  :root:not([data-theme="light"]) .recent-jobs-section {
     background: #1e293b;
     border-color: #334155;
   }
-  
-  .section-header h2 {
+
+  :root:not([data-theme="light"]) .section-header h2 {
     color: #f1f5f9;
   }
-  
-  .section-header p {
+
+  :root:not([data-theme="light"]) .section-header p {
     color: #94a3b8;
   }
-  
-  .table-header {
+
+  :root:not([data-theme="light"]) .table-header {
     color: #e2e8f0;
     border-bottom-color: #334155;
   }
-  
-  .table-row {
+
+  :root:not([data-theme="light"]) .table-row {
     border-bottom-color: #334155;
   }
-  
-  .table-row:hover {
+
+  :root:not([data-theme="light"]) .table-row:hover {
     background-color: #334155;
   }
-  
-  .table-cell {
+
+  :root:not([data-theme="light"]) .table-cell {
     color: #e2e8f0;
   }
+}
+
+:root[data-theme="dark"] .welcome-section h1,
+:root.dark .welcome-section h1 {
+  color: #f1f5f9;
+}
+
+:root[data-theme="dark"] .welcome-section p,
+:root.dark .welcome-section p {
+  color: #94a3b8;
+}
+
+:root[data-theme="dark"] .recent-jobs-section,
+:root.dark .recent-jobs-section {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+:root[data-theme="dark"] .section-header h2,
+:root.dark .section-header h2 {
+  color: #f1f5f9;
+}
+
+:root[data-theme="dark"] .section-header p,
+:root.dark .section-header p {
+  color: #94a3b8;
+}
+
+:root[data-theme="dark"] .table-header,
+:root.dark .table-header {
+  color: #e2e8f0;
+  border-bottom-color: #334155;
+}
+
+:root[data-theme="dark"] .table-row,
+:root.dark .table-row {
+  border-bottom-color: #334155;
+}
+
+:root[data-theme="dark"] .table-row:hover,
+:root.dark .table-row:hover {
+  background-color: #334155;
+}
+
+:root[data-theme="dark"] .table-cell,
+:root.dark .table-cell {
+  color: #e2e8f0;
 }

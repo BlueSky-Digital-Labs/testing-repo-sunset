@@ -1,6 +1,6 @@
 .header {
-  background-color: white;
-  border-bottom: 1px solid #e5e7eb;
+  background-color: var(--hd-bg-primary);
+  border-bottom: 1px solid var(--hd-border-light);
   padding: 0 1rem;
   position: sticky;
   top: 0;
@@ -19,7 +19,7 @@
 .header__logo {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #1f2937;
+  color: var(--hd-text-primary);
   text-decoration: none;
 }
 
@@ -44,7 +44,7 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--hd-text-secondary);
 }
 
 .header__auth-links {
@@ -54,12 +54,12 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .header {
-    background-color: #1f2937;
-    border-bottom-color: #374151;
+  :root:not([data-theme="light"]) .header__logo:hover {
+    color: var(--hd-secondary-light);
   }
-  
-  .header__logo {
-    color: #f3f4f6;
-  }
+}
+
+:root[data-theme="dark"] .header__logo:hover,
+:root.dark .header__logo:hover {
+  color: var(--hd-secondary-light);
 }

@@ -65,20 +65,41 @@ input, textarea, select {
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
-    background-color: #0f172a;
-    color: #f1f5f9;
+  :root:not([data-theme="light"]) body {
+    background-color: var(--hd-bg-primary);
+    color: var(--hd-text-primary);
   }
-  
-  ::-webkit-scrollbar-track {
+
+  :root:not([data-theme="light"]) ::-webkit-scrollbar-track {
     background: #1e293b;
   }
-  
-  ::-webkit-scrollbar-thumb {
+
+  :root:not([data-theme="light"]) ::-webkit-scrollbar-thumb {
     background: #475569;
   }
-  
-  ::-webkit-scrollbar-thumb:hover {
+
+  :root:not([data-theme="light"]) ::-webkit-scrollbar-thumb:hover {
     background: #64748b;
   }
+}
+
+:root[data-theme="dark"] body,
+:root.dark body {
+  background-color: var(--hd-bg-primary);
+  color: var(--hd-text-primary);
+}
+
+:root[data-theme="dark"] ::-webkit-scrollbar-track,
+:root.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+:root[data-theme="dark"] ::-webkit-scrollbar-thumb,
+:root.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+:root[data-theme="dark"] ::-webkit-scrollbar-thumb:hover,
+:root.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
 }

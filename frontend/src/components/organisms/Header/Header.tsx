@@ -4,6 +4,7 @@ import { RootState } from '@store/index'
 import { logout } from '@store/slices/authSlice'
 import { Button } from '@components/atoms/Button'
 import { Logo } from '@components/atoms/Logo'
+import { ThemeToggle } from '@components/atoms/ThemeToggle'
 import { User, LogOut } from 'lucide-react'
 import './Header.css'
 
@@ -25,6 +26,7 @@ export const Header = () => {
         </Link>
 
         <nav className="header__nav">
+          <ThemeToggle />
           {isAuthenticated ? (
             <div className="header__user-menu">
               <span className="header__user-info">

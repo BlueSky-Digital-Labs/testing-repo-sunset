@@ -109,44 +109,53 @@
 
 /* Dark Mode Theme */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     /* Background Colors */
     --hd-bg-primary: #121212;
     --hd-bg-secondary: #1e1e1e;
     --hd-bg-tertiary: #2d2d2d;
-    
+    --hd-main-bg: #121212;
+    --hd-table-header: #1e293b;
+
     /* Text Colors */
     --hd-text-primary: #ffffff;
     --hd-text-secondary: #b3b3b3;
     --hd-text-tertiary: #808080;
     --hd-text-inverse: #212121;
-    
+
     /* Border Colors */
     --hd-border-light: #404040;
     --hd-border-medium: #606060;
     --hd-border-dark: #808080;
-    
+
     /* Adjust primary colors for dark mode */
     --hd-primary-light: #ec407a;
     --hd-primary-dark: #ad1457;
   }
 }
 
-/* Dark mode class override */
-.dark {
+/* Explicit dark mode (user toggle or data-theme="dark") */
+:root[data-theme="dark"],
+:root.dark {
   /* Background Colors */
   --hd-bg-primary: #121212;
   --hd-bg-secondary: #1e1e1e;
   --hd-bg-tertiary: #2d2d2d;
-  
+  --hd-main-bg: #121212;
+  --hd-table-header: #1e293b;
+
   /* Text Colors */
   --hd-text-primary: #ffffff;
   --hd-text-secondary: #b3b3b3;
   --hd-text-tertiary: #808080;
   --hd-text-inverse: #212121;
-  
+
   /* Border Colors */
   --hd-border-light: #404040;
   --hd-border-medium: #606060;
   --hd-border-dark: #808080;
+
+  /* Adjust primary colors for dark mode */
+  --hd-primary-light: #ec407a;
+  --hd-primary-dark: #ad1457;
 }
