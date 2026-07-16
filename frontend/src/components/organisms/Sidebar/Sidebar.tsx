@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '@hooks/useAuth'
 import { useSidebarContent } from '@hooks/useContent'
+import { DarkModeToggle } from '@components/atoms/DarkModeToggle'
 import { Logo } from '@components/atoms/Logo'
 import { 
   LayoutDashboard, 
@@ -88,6 +89,9 @@ export const Sidebar = () => {
       </nav>
 
       <div className="sidebar-footer">
+        <div className="sidebar-theme-toggle">
+          <DarkModeToggle showLabel />
+        </div>
         <button onClick={handleLogout} className="logout-btn">
           <LogOut size={20} />
           <span>{sidebarContent.user.logout}</span>

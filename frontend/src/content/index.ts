@@ -72,6 +72,22 @@ export const content = {
     }
   },
 
+  // Settings
+  settings: {
+    title: 'Settings',
+    subtitle: 'Manage your preferences and account',
+    appearance: {
+      title: 'Appearance',
+      description: 'Customize how the application looks on your device'
+    },
+    account: {
+      title: 'Account',
+      description: 'Your profile information',
+      emailLabel: 'Email address',
+      noEmail: 'Not available'
+    }
+  },
+
   // Sidebar Navigation
   sidebar: {
     menuItems: {

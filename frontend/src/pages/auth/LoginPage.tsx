@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { RootState, AppDispatch } from '@store/index'
 import { loginUser, clearError } from '@store/slices/authSlice'
 import { Button } from '@components/atoms/Button'
+import { DarkModeToggle } from '@components/atoms/DarkModeToggle'
 import { Input } from '@components/atoms/Input'
 import { Logo } from '@components/atoms/Logo'
 import { useAuthContent } from '@hooks/useContent'
@@ -61,6 +62,9 @@ const LoginPage = () => {
 
   return (
     <div className="login-page">
+      <div className="login-page__theme-toggle">
+        <DarkModeToggle />
+      </div>
       <div className="login-container">
         <div className="login-left">
           <div className="login-form-wrapper">
